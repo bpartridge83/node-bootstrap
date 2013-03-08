@@ -1,6 +1,8 @@
 {
   "name": "bootstrap",
+  "author": "Brian Partridge <contact@brianpartridge.com> (http://brianpartridge.com)",
   "version": "0.0.1",
+  "description": "Jumping-off point for a node.js app",
   "dependencies": {
     "express": "3.x",
     "consolidate": "0.7.x",
@@ -15,10 +17,16 @@
 	"deferred": "0.6.x"
   },
   "engines": {
-    "node": "0.8.x",
+    "node": ">0.8.x",
     "npm": "1.1.x"
+  },
+  "dependencies": {
+    "commander": "x.x.x"
   },
   "scripts": {
     "start": "node app.js"
+  },
+  "bin": {
+    "bootstrap": "./bin/bootstrap"
   }
 }
