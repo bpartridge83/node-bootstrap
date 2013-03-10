@@ -20,9 +20,6 @@
     "node": ">0.8.x",
     "npm": "1.1.x"
   },
-  "dependencies": {
-    "commander": "x.x.x"
-  },
   "scripts": {
     "start": "node app.js"
   }
