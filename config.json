@@ -1,0 +1,5 @@
+{
+	"PORT": 5000,
+	"INSTANCE_COUNT": 2,
+	"MONGODB_URL": "mongodb://localhost/bootstrap"
+}
