@@ -11,17 +11,14 @@ module.exports = function (grunt) {
       },
       files: ['tests/*.js']
     },
-    nodemon: {
+    bower: {
       dev: {
-        options: {
-          file: 'instance.js',
-          nodeArgs: ['--debug']
-        }
+        dest: 'dest/path'
       }
     }
   });
 
   grunt.loadNpmTasks('grunt-casperjs');
-  grunt.loadNpmTasks('grunt-nodemon');
+  grunt.loadNpmTasks('grunt-bower-cli');
 
 };
