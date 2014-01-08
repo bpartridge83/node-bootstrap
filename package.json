@@ -39,6 +39,6 @@
     "grunt-nodemon": "~0.1.2",
     "gulp-nodemon": "0.0.2",
     "gulp-minify-css": "~0.1.0",
-    "gulp-wait": "0.0.1"
+    "gulp-wait": "0.0.2"
   }
 }

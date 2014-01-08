@@ -42,14 +42,12 @@ gulp.task('dev', function () {
         .pipe(refresh(server));
     });
 
-    /**
-     * [description]
-     * @param  {[type]} e [description]
-     * @return {[type]}   [description]
-     */
     gulp.watch('./app/views/**/*.html', function (e) {
       gulp.src(e.path)
-        .pipe(wait(1500))
+        .pipe(wait({
+          duration: 1500,
+          verbose: true
+        }))
         .pipe(refresh(server));
     });
 
@@ -73,4 +71,8 @@ gulp.task('cssmin', function () {
   gulp.src('./public/css/*.css')
     .pipe(minifyCSS())
     .pipe(gulp.dest('dist/css'));
+});
+
+gulp.task('default', function () {
+  gulp.run('dev');
 });

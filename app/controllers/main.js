@@ -6,8 +6,6 @@ module.exports = function () {
 
   app.get('/', function (req, res) {
 
-    console.log('woot!');
-
     var cat = new Cat({
       name: 'Galore'
     });
