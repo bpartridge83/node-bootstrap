@@ -6,12 +6,14 @@ module.exports = function () {
 
   app.get('/', function (req, res) {
 
+    console.log('woot!');
+
     var cat = new Cat({
       name: 'Galore'
     });
 
     cat.save(function () {
-      res.render('test');
+      res.render('index');
     });
 
   });

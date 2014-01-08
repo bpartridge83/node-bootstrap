@@ -11,8 +11,17 @@ module.exports = function (grunt) {
       },
       files: ['tests/*.js']
     },
+    nodemon: {
+      dev: {
+        options: {
+          file: 'instance.js',
+          nodeArgs: ['--debug']
+        }
+      }
+    }
   });
 
   grunt.loadNpmTasks('grunt-casperjs');
+  grunt.loadNpmTasks('grunt-nodemon');
 
 };

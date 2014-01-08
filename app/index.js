@@ -20,7 +20,7 @@ module.exports = function (app, express, done) {
 
   app.configure(function () {
 
-    app.use(express.static(__dirname + '/public'));
+    app.use(express.static('./public'));
 
     app.use(express.compress());
     app.use(express.json());
