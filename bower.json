@@ -1,0 +1,7 @@
+{
+  "name": "node-bootstrap",
+  "dependencies": {
+    "jquery": "1.9.1",
+    "underscore": "~1.5.2"
+  }
+}
