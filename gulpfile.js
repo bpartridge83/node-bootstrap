@@ -1,23 +1,42 @@
 'use strict';
 
 var lr = require('tiny-lr'),
-    g = require('gulp'),
+    gulp = require('gulp'),
     refresh = require('gulp-livereload'),
+    sass = require('gulp-sass'),
+    jshint = require('gulp-jshint'),
+    exec = require('gulp-exec'),
+    imagemin = require('gulp-imagemin'),
     server = lr();
 
-g.task('less', function () {
-  g.src('less/*.less')
-    .pipe(less())
-    .pipe(g.dest('css'))
-    .pipe(refresh(server));
+gulp.task('sass', function () {
+  gulp.src('./public/scss/*.scss')
+    .pipe(sass())
+    .pipe(gulp.dest('./public/css'));
 });
 
-g.task('watch', function () {
+gulp.task('watch', function () {
   server.listen(35729, function (err) {
     if (err) return console.log(err);
 
-    g.watch('less/*.less', function (e) {
-        g.run('less');
+    gulp.watch('./public/*', function (e) {
+      gulp.run('sass');
     });
   });
+});
+
+gulp.task('lint', function () {
+  gulp.src('*.js')
+    .pipe(jshint())
+    .pipe(jshint.reporter('default'));
+});
+
+gulp.task('start', function () {
+  exec('forever instance.js');
+});
+
+gulp.task('minify', function () {
+  gulp.src('./public/img/*')
+    .pipe(imagemin())
+    .pipe(gulp.dest('dist/img'));
 });
