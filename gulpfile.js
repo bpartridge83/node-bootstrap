@@ -7,6 +7,7 @@ var lr = require('tiny-lr'),
     jshint = require('gulp-jshint'),
     imagemin = require('gulp-imagemin'),
     minifyCSS = require('gulp-minify-css'),
+    uglify = require('gulp-uglify'),
     nodemon = require('gulp-nodemon'),
     wait = require('gulp-wait'),
     server = lr();
@@ -67,10 +68,22 @@ gulp.task('imagemin', function () {
     .pipe(gulp.dest('dist/img'));
 });
 
+gulp.task('uglify', function() {
+  gulp.src('./public/js/**/*')
+    .pipe(uglify())
+    .pipe(gulp.dest('dist/js'));
+});
+
 gulp.task('cssmin', function () {
   gulp.src('./public/css/*.css')
     .pipe(minifyCSS())
     .pipe(gulp.dest('dist/css'));
+});
+
+gulp.task('minify', function () {
+  gulp.run('imagemin');
+  gulp.run('uglify');
+  gulp.run('cssmin');
 });
 
 gulp.task('default', function () {
