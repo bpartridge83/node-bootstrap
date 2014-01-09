@@ -26,6 +26,7 @@ module.exports = function (app, express, done) {
     app.use(express.json());
     app.use(express.urlencoded());
     app.use(express.cookieParser());
+    app.use(express.session({ secret: 'monkey' }));
     app.use(express.logger('dev'));
 
     app.engine('html', swig.renderFile);
