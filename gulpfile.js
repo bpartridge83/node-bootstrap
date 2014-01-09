@@ -9,7 +9,9 @@ var lr = require('tiny-lr'),
     minifyCSS = require('gulp-minify-css'),
     uglify = require('gulp-uglify'),
     nodemon = require('gulp-nodemon'),
+    plato = require('gulp-plato'),
     wait = require('gulp-wait'),
+    open = require('gulp-open'),
     server = lr();
 
 require('gulp-grunt')(gulp);
@@ -100,6 +102,14 @@ gulp.task('default', function () {
 gulp.task('start', function () {
   gulp.src('./index.js')
     .pipe(nodemon());
+});
+
+gulp.task('review', function () {
+  gulp.src('./app/**/*.js')
+    .pipe(plato('report'));
+
+  gulp.src('report/index.html')
+    .pipe(open());
 });
 
 gulp.task('test', ['start'], function () {
