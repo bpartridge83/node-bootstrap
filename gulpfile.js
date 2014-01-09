@@ -97,3 +97,13 @@ gulp.task('default', function () {
   gulp.run('dev');
 });
 
+gulp.task('start', function () {
+  gulp.src('./instance.js')
+    .pipe(nodemon());
+});
+
+gulp.task('test', ['start'], function () {
+  gulp.run('grunt-casperjs', function () {
+    process.exit();
+  });
+});

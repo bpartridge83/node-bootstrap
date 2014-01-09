@@ -5,11 +5,12 @@ module.exports = function (grunt) {
   grunt.initConfig({
     casperjs: {
       options: {
+        casperjsOptions: [],
         async: {
           parallel: false
         }
       },
-      files: ['tests/*.js']
+      files: ['tests/**/*.js']
     },
     bower: {
       dev: {
