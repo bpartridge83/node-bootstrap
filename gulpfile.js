@@ -29,7 +29,7 @@ gulp.task('dev', function () {
   gulp.run('grunt-bower');
   gulp.run('sass');
 
-  gulp.src('./instance.js')
+  gulp.src('./index.js')
     .pipe(nodemon());
 
   server.listen(35729, function (err) {
@@ -40,12 +40,12 @@ gulp.task('dev', function () {
       gulp.run('sass');
     });
 
-    gulp.watch(['./public/js/**/*', './public/css/**/*'], function (e) {
+    gulp.watch(['./public/css/**/*', './public/js/**/*'], function (e) {
       gulp.src(e.path)
         .pipe(refresh(server));
     });
 
-    gulp.watch('./app/views/**/*.html', function (e) {
+    gulp.watch(['./app/views/**/*.html'], function (e) {
       gulp.src(e.path)
         .pipe(wait({
           duration: 1500,
@@ -70,7 +70,7 @@ gulp.task('imagemin', function () {
     .pipe(gulp.dest('public/dist/img'));
 });
 
-gulp.task('uglify', function() {
+gulp.task('uglify', function () {
   gulp.src('./public/js/**/*')
     .pipe(uglify())
     .pipe(gulp.dest('public/dist/js'));
@@ -98,7 +98,7 @@ gulp.task('default', function () {
 });
 
 gulp.task('start', function () {
-  gulp.src('./instance.js')
+  gulp.src('./index.js')
     .pipe(nodemon());
 });
 

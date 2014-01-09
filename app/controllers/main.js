@@ -6,13 +6,7 @@ module.exports = function () {
 
   app.get('/', function (req, res) {
 
-    var cat = new Cat({
-      name: 'Galore'
-    });
-
-    cat.save(function () {
-      res.render('index');
-    });
+    res.render('index');
 
   });
     
