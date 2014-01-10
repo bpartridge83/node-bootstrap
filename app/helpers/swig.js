@@ -1,25 +1,44 @@
-/*globals app, fs, vsprintf, sprintf, swig */
+/*globals app, fs, vsprintf, sprintf, swig, _ */
 
 'use strict';
 
 module.exports = function () {
 
+  var _find = function (name) {
+    var found = null,
+      formats = [
+        '/vendor/%s/%s.js',
+        '/vendor/%s/%s.min.js',
+        '/vendor/%s/%s-min.js',
+        '/vendor/%s/%s.css',
+        '/vendor/%s/%s.min.css',
+        '/vendor/%s/%s-min.css'
+      ];
+
+    _.each(formats, function (format) {
+      format = vsprintf(format, [name, name]);
+      if (fs.existsSync(app.get('public') + '/' + format)) {
+        found = format;
+      }
+    });
+
+    return found;
+  };
+
   var vendor = function (input, idx) {
-    var filePath = vsprintf('vendor/%s/%s.js', [input, input]),
-      filePathMin = filePath.replace('.js', '.min.js');
 
-    if (fs.existsSync(app.get('public') + '/' + filePath)) {
+    var filePath = null;
 
-      if (fs.existsSync(app.get('public') + '/' + filePathMin)) {
-        filePath = filePathMin;
+    if (input.indexOf('.') > -1) {
+      var format = sprintf('/vendor/%s', input);
+      if (fs.existsSync(app.get('public') + '/' + format)) {
+        filePath = format;
       }
+    } else {
+      filePath = _find(input);
+    }
 
-      filePathMin = filePath.replace('.js', '-min.js');
-
-      if (fs.existsSync(app.get('public') + '/' + filePathMin)) {
-        filePath = filePathMin;
-      }
-
+    if (filePath) {
       return sprintf('<script src="%s"></script>', filePath);
     }
 
