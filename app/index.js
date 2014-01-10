@@ -18,8 +18,10 @@ module.exports = function (app, express, done) {
     .argv().env()
     .file('local', 'config.json');
   global.mongoose = mongoose.connect(nconf.get('MONGODB_URL'));
-  
-  
+  global.path = require('path');
+  global.sprintf = require('sprintf').sprintf;
+  global.vsprintf = require('sprintf').vsprintf;
+  global.swig = swig;
 
   app.configure(function () {
 

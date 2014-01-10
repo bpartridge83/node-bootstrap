@@ -1,3 +1,4 @@
+{% spaceless %}
 <!DOCTYPE html>
 <htmlx>
     <head>
@@ -7,23 +8,20 @@
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width">
 
-        <script>
-            var b = document.documentElement;
-              b.setAttribute('data-useragent',  navigator.userAgent);
-              b.setAttribute('data-platform', navigator.platform );
-              b.className += ((!!('ontouchstart' in window) || !!('onmsgesturechange' in window))?' touch':'');
-        </script>
-
         <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 
         <link rel="stylesheet" href="/css/main.css">
-        <script src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.7.1/modernizr.min.js"></script>
+
+        <script>var b=document.documentElement;b.setAttribute("data-useragent",navigator.userAgent);b.setAttribute("data-platform",navigator.platform);b.className+=!!("ontouchstart"in window)||!!("onmsgesturechange"in window)?" touch":""</script>
+        {{ 'modernizr'|vendor }}
     </head>
     <body>
 
         {% block body %}{% endblock %}
 
-        <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+        {{ 'jquery'|vendor }}
+        {{ 'underscore'|vendor }}
+
         <script src="/socket.io/socket.io.js"></script>
         <script src="/js/plugins.js"></script>
         <script src="/js/main.js"></script>
@@ -31,11 +29,8 @@
 		{% block js %}{% endblock %}
 
         <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
-        <script>
-            var _gaq=[['_setAccount','UA-XXXXX-X'],['_trackPageview']];
-            (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
-            g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
-            s.parentNode.insertBefore(g,s)}(document,'script'));
-        </script>
+        <script>var _gaq=[["_setAccount","UA-XXXXX-X"],["_trackPageview"]];(function(e,t){var n=e.createElement(t),r=e.getElementsByTagName(t)[0];n.src=("https:"==location.protocol?"//ssl":"//www")+".google-analytics.com/ga.js";r.parentNode.insertBefore(n,r)})(document,"script")</script>
+
     </body>
 </html>
+{% endspaceless %}

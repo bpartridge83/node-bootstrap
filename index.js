@@ -10,6 +10,8 @@ var express = require('express.io'),
   io = app.http().io();
 
 app.set('path', path.resolve('./app'));
+app.set('public', path.resolve('./public'));
+app.set('root', path.resolve('./'));
 
 require(app.get('path') + '/index')(app, express, function (err, port) {
 

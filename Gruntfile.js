@@ -12,11 +12,7 @@ module.exports = function (grunt) {
       },
       files: ['tests/**/*.js']
     },
-    bower: {
-      dev: {
-        dest: 'dest/path'
-      }
-    }
+    bower: {}
   });
 
   grunt.loadNpmTasks('grunt-casperjs');
