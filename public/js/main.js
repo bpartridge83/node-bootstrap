@@ -16,4 +16,8 @@ io.on('disconnect', function () {
   console.log('io: Disconnected');
 });
 
+io.on('awesome', function (res) {
+  console.log(res);
+});
+
 io.emit('ready');

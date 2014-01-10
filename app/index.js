@@ -7,7 +7,8 @@ module.exports = function (app, express, done) {
   var swig = require('swig'),
     mongoose = require('mongoose'),
     controllers = require('./controllers'),
-    models = require('./models');
+    models = require('./models'),
+    helpers = require('./helpers');
 
   global._ = require('underscore');
   global.app = app;
@@ -17,6 +18,8 @@ module.exports = function (app, express, done) {
     .argv().env()
     .file('local', 'config.json');
   global.mongoose = mongoose.connect(nconf.get('MONGODB_URL'));
+  
+  
 
   app.configure(function () {
 
@@ -36,7 +39,11 @@ module.exports = function (app, express, done) {
 
   });
 
-  Async.series([
+  Async.parallel([
+    function (callback) {
+      helpers();
+      callback(null);
+    },
     function (callback) {
       models();
       callback(null);

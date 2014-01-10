@@ -8,11 +8,18 @@ module.exports = function () {
 
     var pjson = require(app.get('path') + '/../package.json');
 
-    req.io.emit('status', {
-      status: 'running',
-      environment: app.get('env'),
-      version: pjson.version
-    });
+    setTimeout(function () {
+
+      app.get('socket')(req).emit('status', 'io: Single-Client Message');
+      app.io.broadcast('status', 'io: Application-Wide Broadcast');
+
+      req.io.emit('status', {
+        status: 'running',
+        environment: app.get('env'),
+        version: pjson.version
+      });
+
+    }, 1000);
 
   });
 

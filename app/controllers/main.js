@@ -6,7 +6,13 @@ module.exports = function () {
 
   app.get('/', function (req, res) {
 
-    res.render('index');
+    return res.render('index');
+
+  });
+
+  app.get('/clients', function (req, res) {
+
+    console.log(app.io);
 
   });
     
