@@ -20,15 +20,15 @@ gulp.task('sass', function () {
   gulp.src('./public/scss/*.scss')
     .pipe(sass({
       includePaths: [
-        'public/scss/partials'
+        'public/scss/partials',
+        'public/vendor/bourbon/app/assets/stylesheets'
       ]
     }))
     .pipe(gulp.dest('./public/css'));
 });
 
-gulp.task('dev', function () {
+gulp.task('dev', ['grunt-bower'], function () {
 
-  gulp.run('grunt-bower');
   gulp.run('sass');
 
   gulp.src('./index.js')

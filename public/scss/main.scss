@@ -1,7 +1,9 @@
-@import "_partial.scss";
+@import "_partial";
+@import "_bourbon";
 
 body {
 	font-size: 20px;
+   @include linear-gradient(to top, red, orange);
 }
 
 html {
