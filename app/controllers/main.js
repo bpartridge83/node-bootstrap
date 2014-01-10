@@ -15,6 +15,10 @@ module.exports = function () {
     console.log(app.io);
 
   });
+
+  app.get('/error', function (req, res) {
+    return res.send(new ForbiddenError());
+  });
     
   app.get('/status', function (req, res) {
     

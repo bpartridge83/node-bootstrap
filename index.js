@@ -1,5 +1,3 @@
-/*globals nconf */
-
 'use strict';
 
 var express = require('express.io'),

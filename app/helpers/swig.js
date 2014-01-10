@@ -1,4 +1,4 @@
-/*globals app, fs, vsprintf, sprintf, swig, _ */
+/* global app, fs, vsprintf, sprintf, swig, _ */
 
 'use strict';
 
