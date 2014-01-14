@@ -2,6 +2,8 @@
 
 var lr = require('tiny-lr'),
     gulp = require('gulp'),
+    exec = require('exec'),
+    ngrok = require('ngrok'),
     refresh = require('gulp-livereload'),
     sass = require('gulp-sass'),
     jshint = require('gulp-jshint'),
@@ -15,6 +17,30 @@ var lr = require('tiny-lr'),
     server = lr();
 
 require('gulp-grunt')(gulp);
+
+gulp.task('ngrok', function () {
+
+  if (!gulp.env.ngrok) {
+    return;
+  }
+
+  ngrok.connect({
+    authtoken: 'FmbBlphL9x7PdMuMVZj7',
+    subdomain: 'brian',
+    port: 5000
+  }, function (err, url) {
+
+    console.log('//-----  ' + url + '  ------//');
+
+    exec(['open', url], function (err, out, code) {
+      if (err) throw err;
+      process.stdout.write(out);
+      return url;
+    });
+
+  });
+
+});
 
 gulp.task('sass', function () {
   gulp.src('./public/scss/*.scss')
@@ -33,6 +59,8 @@ gulp.task('dev', ['grunt-bower'], function () {
 
   gulp.src('./index.js')
     .pipe(nodemon());
+
+  gulp.run('ngrok');
 
   server.listen(35729, function (err) {
 
@@ -85,7 +113,7 @@ gulp.task('cssmin', ['sass'], function () {
 });
 
 gulp.task('minify', function () {
-  gulp.run('imagemin');
+  //gulp.run('imagemin');
   gulp.run('uglify');
   gulp.run('cssmin');
 });

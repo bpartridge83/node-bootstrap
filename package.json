@@ -29,7 +29,7 @@
     "test": "gulp test"
   },
   "devDependencies": {
-    "gulp": "~3.2.4",
+    "gulp": "~3.3.2",
     "grunt": "~0.4.2",
     "gulp-livereload": "~0.1.1",
     "tiny-lr": "0.0.5",
@@ -44,6 +44,9 @@
     "gulp-uglify": "~0.1.0",
     "grunt-bower-cli": "0.0.1",
     "gulp-plato": "~0.1.0",
-    "gulp-open": "~0.2.7"
+    "gulp-open": "~0.2.7",
+    "gulp-exec": "~1.0.3",
+    "ngrok": "~0.1.4",
+    "exec": "0.0.6"
   }
 }
