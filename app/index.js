@@ -38,6 +38,9 @@ module.exports = function (app, express, done) {
     app.set('view engine', 'html');
     app.set('views', __dirname + '/views');
     app.set('view cache', false);
+    swig.setDefaults({
+      cache: false
+    });
 
   });
 

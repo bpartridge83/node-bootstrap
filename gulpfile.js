@@ -55,11 +55,10 @@ gulp.task('sass', function () {
 
 gulp.task('dev', ['grunt-bower'], function () {
 
-  gulp.run('sass');
-
   gulp.src('./index.js')
     .pipe(nodemon());
 
+  gulp.run('sass');
   gulp.run('ngrok');
 
   server.listen(35729, function (err) {
@@ -70,15 +69,15 @@ gulp.task('dev', ['grunt-bower'], function () {
       gulp.run('sass');
     });
 
-    gulp.watch(['./public/css/**/*', './public/js/**/*'], function (e) {
+    gulp.watch(['./app/views/**/*.html', './public/css/**/*', './public/js/**/*'], function (e) {
       gulp.src(e.path)
         .pipe(refresh(server));
     });
 
-    gulp.watch(['./app/views/**/*.html'], function (e) {
+    gulp.watch(['./app/controllers/**/*.js'], function (e) {
       gulp.src(e.path)
         .pipe(wait({
-          duration: 1500,
+          duration: 2000,
           verbose: true
         }))
         .pipe(refresh(server));
