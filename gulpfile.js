@@ -1,20 +1,23 @@
 'use strict';
 
-var lr = require('tiny-lr'),
-    gulp = require('gulp'),
+var gulp = require('gulp'),
+  sass = require('gulp-sass'),
+  imagemin = require('gulp-imagemin'),
+  minifyCSS = require('gulp-minify-css'),
+  uglify = require('gulp-uglify');
+
+if (!process.env.NODE_ENV == 'production') {
+  var lr = require('tiny-lr'),
     exec = require('exec'),
     ngrok = require('ngrok'),
     refresh = require('gulp-livereload'),
-    sass = require('gulp-sass'),
     jshint = require('gulp-jshint'),
-    imagemin = require('gulp-imagemin'),
-    minifyCSS = require('gulp-minify-css'),
-    uglify = require('gulp-uglify'),
     nodemon = require('gulp-nodemon'),
     plato = require('gulp-plato'),
     wait = require('gulp-wait'),
     open = require('gulp-open'),
     server = lr();
+}
 
 require('gulp-grunt')(gulp);
 
