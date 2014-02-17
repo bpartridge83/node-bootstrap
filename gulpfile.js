@@ -120,8 +120,7 @@ gulp.task('minify', function () {
   gulp.run('cssmin');
 });
 
-gulp.task('dist', function () {
-  gulp.run('grunt-bower');
+gulp.task('dist', ['grunt-bower'], function () {
   gulp.run('minify');
 });
 
